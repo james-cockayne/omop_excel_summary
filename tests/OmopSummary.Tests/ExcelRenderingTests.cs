@@ -6,10 +6,9 @@ namespace OmopSummary.Tests;
 [TestClass]
 public class ExcelRenderingTests
 {
-    // Written to workspace root for manual inspection — not cleaned up after the run
     private static readonly string OutputPath = Path.Combine(
         Path.GetDirectoryName(typeof(ExcelRenderingTests).Assembly.Location)!,
-        "..", "..", "..", "..", "..", "TestReport.xlsx");
+        "TestReport.xlsx");
 
     private static readonly string[] ExpectedSheets =
     [
@@ -38,7 +37,7 @@ public class ExcelRenderingTests
     public void OutputFile_Exists_And_HasContent()
     {
         Assert.IsTrue(File.Exists(Path.GetFullPath(OutputPath)));
-        Assert.IsGreaterThan(new FileInfo(Path.GetFullPath(OutputPath)).Length, 0L);
+        Assert.IsGreaterThan(0L, new FileInfo(Path.GetFullPath(OutputPath)).Length);
     }
 
     [TestMethod]
