@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using DuckDB.NET.Data;
 using OmopSummary.Models;
 
@@ -5,11 +6,16 @@ namespace OmopSummary.Extraction;
 
 public class DataExtractor
 {
+    private static readonly Regex ValidIdentifier = new(@"^[A-Za-z_][A-Za-z0-9_]*$", RegexOptions.Compiled);
+
     private readonly string _dbPath;
     private readonly string _schema;
 
     public DataExtractor(string dbPath, string schema)
     {
+        if (!ValidIdentifier.IsMatch(schema))
+            throw new ArgumentException($"Invalid schema name '{schema}'. Must be a simple SQL identifier (letters, digits, underscores, must not start with a digit).", nameof(schema));
+
         _dbPath = dbPath;
         _schema = schema;
     }
