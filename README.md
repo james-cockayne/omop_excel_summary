@@ -11,7 +11,7 @@ A command-line tool that connects to a DuckDB database containing an OMOP CDM 5.
 ```
 docker run --rm \
   -v /path/to/your/data:/data \
-  ghcr.io/james-cockayne/omop-summary:latest \
+  ghcr.io/james-cockayne/omop_excel_summary:latest \
   /data/<db-filename> <report-name> [schema]
 ```
 
