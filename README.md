@@ -31,7 +31,7 @@ docker run --rm \
   /data/cibuild.db MyReport cdm
 ```
 
-This reads `omop.db` from `/home/user/omop-data` and writes `MyReport.xlsx` to the same directory.
+This reads `cibuild.db` from `/home/user/omop-data` and writes `MyReport.xlsx` to the same directory.
 
 ## Output
 
