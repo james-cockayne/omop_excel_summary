@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OmopSummary/OmopSummary.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/OmopSummary.Tests/OmopSummary.Tests.csproj" />
+  </Folder>
+</Solution>
