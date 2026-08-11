@@ -38,7 +38,7 @@ public class ExcelRenderingTests
     public void OutputFile_Exists_And_HasContent()
     {
         Assert.IsTrue(File.Exists(Path.GetFullPath(OutputPath)));
-        Assert.IsGreaterThan(0L, new FileInfo(Path.GetFullPath(OutputPath)).Length);
+        Assert.IsGreaterThan(new FileInfo(Path.GetFullPath(OutputPath)).Length, 0L);
     }
 
     [TestMethod]
