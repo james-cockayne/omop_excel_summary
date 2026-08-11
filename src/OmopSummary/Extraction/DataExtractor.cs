@@ -107,11 +107,13 @@ public class DataExtractor
         cmd.CommandText = $"""
             SELECT
                 COALESCE(c.concept_name, 'Unknown') AS concept_name,
-                COUNT(*) AS cnt
+                COUNT(*) AS cnt,
+                COALESCE(c.concept_id, 0) AS concept_id,
+                COALESCE(c.concept_code, '') AS concept_code,
+                COALESCE(c.vocabulary_id, '') AS vocabulary_id
             FROM {_schema}.person p
             LEFT JOIN {_schema}.concept c ON p.{conceptColumn} = c.concept_id
-            WHERE p.{conceptColumn} != 0
-            GROUP BY c.concept_name
+            GROUP BY c.concept_id, c.concept_name, c.concept_code, c.vocabulary_id
             ORDER BY cnt DESC
             """;
 
@@ -126,11 +128,14 @@ public class DataExtractor
         cmd.CommandText = $"""
             SELECT
                 COALESCE(c.concept_name, 'Unknown') AS concept_name,
-                COUNT(*) AS cnt
+                COUNT(*) AS cnt,
+                COALESCE(c.concept_id, 0) AS concept_id,
+                COALESCE(c.concept_code, '') AS concept_code,
+                COALESCE(c.vocabulary_id, '') AS vocabulary_id
             FROM {_schema}.{table} t
             LEFT JOIN {_schema}.concept c ON t.{conceptColumn} = c.concept_id
             WHERE t.{conceptColumn} != 0
-            GROUP BY c.concept_name
+            GROUP BY c.concept_id, c.concept_name, c.concept_code, c.vocabulary_id
             HAVING COUNT(*) > 1000
             ORDER BY cnt DESC
             """;
@@ -151,11 +156,14 @@ public class DataExtractor
         cmd.CommandText = $"""
             SELECT
                 COALESCE(c.concept_name, 'Unknown') AS concept_name,
-                COUNT(*) AS cnt
+                COUNT(*) AS cnt,
+                COALESCE(c.concept_id, 0) AS concept_id,
+                COALESCE(c.concept_code, '') AS concept_code,
+                COALESCE(c.vocabulary_id, '') AS vocabulary_id
             FROM {_schema}.visit_occurrence v
             LEFT JOIN {_schema}.concept c ON v.visit_type_concept_id = c.concept_id
             WHERE v.visit_type_concept_id != 0
-            GROUP BY c.concept_name
+            GROUP BY c.concept_id, c.concept_name, c.concept_code, c.vocabulary_id
             ORDER BY cnt DESC
             """;
 
@@ -170,11 +178,14 @@ public class DataExtractor
         cmd.CommandText = $"""
             SELECT
                 COALESCE(c.concept_name, 'Unknown') AS concept_name,
-                COUNT(*) AS cnt
+                COUNT(*) AS cnt,
+                COALESCE(c.concept_id, 0) AS concept_id,
+                COALESCE(c.concept_code, '') AS concept_code,
+                COALESCE(c.vocabulary_id, '') AS vocabulary_id
             FROM {_schema}.death d
             LEFT JOIN {_schema}.concept c ON d.cause_concept_id = c.concept_id
             WHERE d.cause_concept_id != 0
-            GROUP BY c.concept_name
+            GROUP BY c.concept_id, c.concept_name, c.concept_code, c.vocabulary_id
             HAVING COUNT(*) > 10
             ORDER BY cnt DESC
             """;
@@ -223,7 +234,14 @@ public class DataExtractor
         var results = new List<ConceptCount>();
         using var reader = cmd.ExecuteReader();
         while (reader.Read())
-            results.Add(new ConceptCount { ConceptName = reader.GetString(0), Count = reader.GetInt64(1) });
+            results.Add(new ConceptCount
+            {
+                ConceptName = reader.GetString(0),
+                Count = reader.GetInt64(1),
+                ConceptId = Convert.ToInt64(reader.GetValue(2)),
+                ConceptCode = reader.GetString(3),
+                Vocabulary = reader.GetString(4),
+            });
         return results;
     }
 }

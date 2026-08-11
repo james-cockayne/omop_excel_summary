@@ -47,15 +47,15 @@ internal static class TestData
             ],
             GenderBreakdown =
             [
-                new() { ConceptName = "FEMALE", Count = 26200 },
-                new() { ConceptName = "MALE",   Count = 23800 },
+                new() { ConceptName = "FEMALE", Count = 26200, ConceptId = 8532, ConceptCode = "F", Vocabulary = "Gender" },
+                new() { ConceptName = "MALE",   Count = 23800, ConceptId = 8507, ConceptCode = "M", Vocabulary = "Gender" },
             ],
             RaceBreakdown =
             [
-                new() { ConceptName = "White",                     Count = 32000 },
-                new() { ConceptName = "Black or African American", Count = 8500 },
-                new() { ConceptName = "Asian",                     Count = 4200 },
-                new() { ConceptName = "Other Race",                Count = 5300 },
+                new() { ConceptName = "White",                     Count = 32000, ConceptId = 8527, ConceptCode = "5", Vocabulary = "Race" },
+                new() { ConceptName = "Black or African American", Count = 8500,  ConceptId = 8516, ConceptCode = "3", Vocabulary = "Race" },
+                new() { ConceptName = "Asian",                     Count = 4200,  ConceptId = 8515, ConceptCode = "2", Vocabulary = "Race" },
+                new() { ConceptName = "Other Race",                Count = 5300,  ConceptId = 8522, ConceptCode = "6", Vocabulary = "Race" },
             ],
         },
         Conditions = new ConceptStats
@@ -63,14 +63,14 @@ internal static class TestData
             TotalCount = 320000,
             TopConcepts =
             [
-                new() { ConceptName = "Essential hypertension",         Count = 42000 },
-                new() { ConceptName = "Type 2 diabetes mellitus",       Count = 28000 },
-                new() { ConceptName = "Hyperlipidemia",                 Count = 24000 },
-                new() { ConceptName = "Obesity",                        Count = 19000 },
-                new() { ConceptName = "Depressive disorder",            Count = 15000 },
-                new() { ConceptName = "Chronic kidney disease stage 3", Count = 12000 },
-                new() { ConceptName = "Asthma",                         Count = 11000 },
-                new() { ConceptName = "Atrial fibrillation",            Count = 9000 },
+                new() { ConceptName = "Essential hypertension",         Count = 42000, ConceptId = 316866, ConceptCode = "38341003",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Type 2 diabetes mellitus",       Count = 28000, ConceptId = 201826, ConceptCode = "44054006",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Hyperlipidemia",                 Count = 24000, ConceptId = 432867, ConceptCode = "55822004",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Obesity",                        Count = 19000, ConceptId = 433736, ConceptCode = "414916001", Vocabulary = "SNOMED" },
+                new() { ConceptName = "Depressive disorder",            Count = 15000, ConceptId = 440383, ConceptCode = "35489007",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Chronic kidney disease stage 3", Count = 12000, ConceptId = 443601, ConceptCode = "433144002", Vocabulary = "SNOMED" },
+                new() { ConceptName = "Asthma",                         Count = 11000, ConceptId = 317009, ConceptCode = "195967001", Vocabulary = "SNOMED" },
+                new() { ConceptName = "Atrial fibrillation",            Count = 9000,  ConceptId = 313217, ConceptCode = "49436004",  Vocabulary = "SNOMED" },
             ],
         },
         Measurements = new ConceptStats
@@ -78,10 +78,10 @@ internal static class TestData
             TotalCount = 1100000,
             TopConcepts =
             [
-                new() { ConceptName = "Hemoglobin A1c/Hemoglobin.total in Blood",        Count = 180000 },
-                new() { ConceptName = "Creatinine [Mass/volume] in Serum or Plasma",     Count = 160000 },
-                new() { ConceptName = "Glucose [Mass/volume] in Blood",                  Count = 140000 },
-                new() { ConceptName = "Body mass index (BMI) [Ratio]",                   Count = 130000 },
+                new() { ConceptName = "Hemoglobin A1c/Hemoglobin.total in Blood",        Count = 180000, ConceptId = 3004410, ConceptCode = "4548-4",   Vocabulary = "LOINC" },
+                new() { ConceptName = "Creatinine [Mass/volume] in Serum or Plasma",     Count = 160000, ConceptId = 3016723, ConceptCode = "2160-0",   Vocabulary = "LOINC" },
+                new() { ConceptName = "Glucose [Mass/volume] in Blood",                  Count = 140000, ConceptId = 3004501, ConceptCode = "2345-7",   Vocabulary = "LOINC" },
+                new() { ConceptName = "Body mass index (BMI) [Ratio]",                   Count = 130000, ConceptId = 3038553, ConceptCode = "39156-5",  Vocabulary = "LOINC" },
             ],
         },
         Observations = new ConceptStats
@@ -89,9 +89,9 @@ internal static class TestData
             TotalCount = 85000,
             TopConcepts =
             [
-                new() { ConceptName = "Tobacco smoking status", Count = 32000 },
-                new() { ConceptName = "Body weight",            Count = 18000 },
-                new() { ConceptName = "Alcohol use",            Count = 12000 },
+                new() { ConceptName = "Tobacco smoking status", Count = 32000, ConceptId = 4005823, ConceptCode = "229819007", Vocabulary = "SNOMED" },
+                new() { ConceptName = "Body weight",            Count = 18000, ConceptId = 3025315, ConceptCode = "29463-7",   Vocabulary = "LOINC" },
+                new() { ConceptName = "Alcohol use",            Count = 12000, ConceptId = 4238768, ConceptCode = "160573003", Vocabulary = "SNOMED" },
             ],
         },
         DeviceExposures = new ConceptStats
@@ -99,8 +99,8 @@ internal static class TestData
             TotalCount = 12000,
             TopConcepts =
             [
-                new() { ConceptName = "Cardiac pacemaker",          Count = 4200 },
-                new() { ConceptName = "Continuous glucose monitor",  Count = 3100 },
+                new() { ConceptName = "Cardiac pacemaker",          Count = 4200, ConceptId = 4119932, ConceptCode = "14106009",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Continuous glucose monitor",  Count = 3100, ConceptId = 4163246, ConceptCode = "700422006", Vocabulary = "SNOMED" },
             ],
         },
         ProcedureOccurrences = new ConceptStats
@@ -108,9 +108,9 @@ internal static class TestData
             TotalCount = 220000,
             TopConcepts =
             [
-                new() { ConceptName = "Colonoscopy",       Count = 28000 },
-                new() { ConceptName = "Electrocardiogram", Count = 22000 },
-                new() { ConceptName = "Plain chest X-ray", Count = 19000 },
+                new() { ConceptName = "Colonoscopy",       Count = 28000, ConceptId = 4263110, ConceptCode = "73761001",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Electrocardiogram", Count = 22000, ConceptId = 4023672, ConceptCode = "29303009",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Plain chest X-ray", Count = 19000, ConceptId = 4097276, ConceptCode = "399208008", Vocabulary = "SNOMED" },
             ],
         },
         DrugExposures = new ConceptStats
@@ -118,10 +118,10 @@ internal static class TestData
             TotalCount = 430000,
             TopConcepts =
             [
-                new() { ConceptName = "Atorvastatin", Count = 62000 },
-                new() { ConceptName = "Metformin",    Count = 55000 },
-                new() { ConceptName = "Lisinopril",   Count = 48000 },
-                new() { ConceptName = "Amlodipine",   Count = 37000 },
+                new() { ConceptName = "Atorvastatin", Count = 62000, ConceptId = 1545958, ConceptCode = "83367",  Vocabulary = "RxNorm" },
+                new() { ConceptName = "Metformin",    Count = 55000, ConceptId = 1503297, ConceptCode = "6809",   Vocabulary = "RxNorm" },
+                new() { ConceptName = "Lisinopril",   Count = 48000, ConceptId = 1308216, ConceptCode = "29046",  Vocabulary = "RxNorm" },
+                new() { ConceptName = "Amlodipine",   Count = 37000, ConceptId = 1332418, ConceptCode = "17767",  Vocabulary = "RxNorm" },
             ],
         },
         Visits = new VisitStats
@@ -129,9 +129,9 @@ internal static class TestData
             TotalCount = 190000,
             VisitTypeBreakdown =
             [
-                new() { ConceptName = "Outpatient Visit",     Count = 130000 },
-                new() { ConceptName = "Inpatient Visit",      Count = 42000 },
-                new() { ConceptName = "Emergency Room Visit", Count = 18000 },
+                new() { ConceptName = "Outpatient Visit",     Count = 130000, ConceptId = 9202, ConceptCode = "AMB",  Vocabulary = "Visit" },
+                new() { ConceptName = "Inpatient Visit",      Count = 42000,  ConceptId = 9201, ConceptCode = "IMP",  Vocabulary = "Visit" },
+                new() { ConceptName = "Emergency Room Visit", Count = 18000,  ConceptId = 9203, ConceptCode = "EMER", Vocabulary = "Visit" },
             ],
         },
         Deaths = new DeathStats
@@ -139,9 +139,9 @@ internal static class TestData
             TotalCount = 3200,
             CauseBreakdown =
             [
-                new() { ConceptName = "Malignant neoplasm of trachea, bronchus and lung", Count = 320 },
-                new() { ConceptName = "Acute myocardial infarction",                      Count = 280 },
-                new() { ConceptName = "Cerebrovascular disease",                          Count = 210 },
+                new() { ConceptName = "Malignant neoplasm of trachea, bronchus and lung", Count = 320, ConceptId = 4291005, ConceptCode = "363358000", Vocabulary = "SNOMED" },
+                new() { ConceptName = "Acute myocardial infarction",                      Count = 280, ConceptId = 312327,  ConceptCode = "57054005",  Vocabulary = "SNOMED" },
+                new() { ConceptName = "Cerebrovascular disease",                          Count = 210, ConceptId = 381591,  ConceptCode = "62914000",  Vocabulary = "SNOMED" },
             ],
         },
         DataQuality = new DataQualityStats

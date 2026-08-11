@@ -15,20 +15,13 @@ internal static class DeathSheet
         ws.Cells[3, 1].Value = "Total Deaths";
         ws.Cells[3, 2].Value = stats.TotalCount;
 
-        ws.Cells[5, 1].Value = "Cause of Death";
-        ws.Cells[5, 2].Value = "Count";
-        ws.Cells[5, 1].Style.Font.Bold = true;
-        ws.Cells[5, 2].Style.Font.Bold = true;
-
-        int row = 6;
-        foreach (var d in stats.CauseBreakdown)
-        {
-            ws.Cells[row, 1].Value = d.ConceptName;
-            ws.Cells[row, 2].Value = d.Count;
-            row++;
-        }
+        ConceptSheetWriter.WriteConceptTable(ws, 5, stats.CauseBreakdown);
 
         ws.Column(1).Width = 50;
         ws.Column(2).Width = 18;
+        ws.Column(3).Width = 14;
+        ws.Column(4).Width = 20;
+        ws.Column(5).Width = 16;
+        ws.Column(6).Width = 14;
     }
 }

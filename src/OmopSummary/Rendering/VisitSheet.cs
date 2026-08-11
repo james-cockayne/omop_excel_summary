@@ -15,20 +15,13 @@ internal static class VisitSheet
         ws.Cells[3, 1].Value = "Total Records";
         ws.Cells[3, 2].Value = stats.TotalCount;
 
-        ws.Cells[5, 1].Value = "Visit Type";
-        ws.Cells[5, 2].Value = "Count";
-        ws.Cells[5, 1].Style.Font.Bold = true;
-        ws.Cells[5, 2].Style.Font.Bold = true;
-
-        int row = 6;
-        foreach (var v in stats.VisitTypeBreakdown)
-        {
-            ws.Cells[row, 1].Value = v.ConceptName;
-            ws.Cells[row, 2].Value = v.Count;
-            row++;
-        }
+        ConceptSheetWriter.WriteConceptTable(ws, 5, stats.VisitTypeBreakdown);
 
         ws.Column(1).Width = 40;
         ws.Column(2).Width = 18;
+        ws.Column(3).Width = 14;
+        ws.Column(4).Width = 20;
+        ws.Column(5).Width = 16;
+        ws.Column(6).Width = 14;
     }
 }

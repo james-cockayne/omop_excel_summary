@@ -15,20 +15,45 @@ internal static class ConceptSheetWriter
         ws.Cells[3, 1].Value = "Total Records";
         ws.Cells[3, 2].Value = stats.TotalCount;
 
-        ws.Cells[5, 1].Value = "Concept";
-        ws.Cells[5, 2].Value = "Count (rounded to 10)";
-        ws.Cells[5, 1].Style.Font.Bold = true;
-        ws.Cells[5, 2].Style.Font.Bold = true;
-
-        int row = 6;
-        foreach (var concept in stats.TopConcepts)
-        {
-            ws.Cells[row, 1].Value = concept.ConceptName;
-            ws.Cells[row, 2].Value = concept.Count;
-            row++;
-        }
+        WriteConceptTable(ws, 5, stats.TopConcepts, "Count (rounded to 10)");
 
         ws.Column(1).Width = 50;
         ws.Column(2).Width = 24;
+        ws.Column(3).Width = 14;
+        ws.Column(4).Width = 20;
+        ws.Column(5).Width = 16;
+        ws.Column(6).Width = 14;
+    }
+
+    internal static int WriteConceptTable(ExcelWorksheet ws, int startRow, IEnumerable<ConceptCount> concepts,
+        string countHeader = "Count")
+    {
+        ws.Cells[startRow, 1].Value = "Concept";      ws.Cells[startRow, 1].Style.Font.Bold = true;
+        ws.Cells[startRow, 2].Value = countHeader;    ws.Cells[startRow, 2].Style.Font.Bold = true;
+        ws.Cells[startRow, 3].Value = "Concept ID";   ws.Cells[startRow, 3].Style.Font.Bold = true;
+        ws.Cells[startRow, 4].Value = "Concept Code"; ws.Cells[startRow, 4].Style.Font.Bold = true;
+        ws.Cells[startRow, 5].Value = "Vocabulary";   ws.Cells[startRow, 5].Style.Font.Bold = true;
+        ws.Cells[startRow, 6].Value = "Athena";       ws.Cells[startRow, 6].Style.Font.Bold = true;
+        startRow++;
+
+        foreach (var c in concepts)
+        {
+            ws.Cells[startRow, 1].Value = c.ConceptName;
+            ws.Cells[startRow, 2].Value = c.Count;
+            if (c.ConceptId > 0)
+            {
+                ws.Cells[startRow, 3].Value = c.ConceptId;
+                ws.Cells[startRow, 4].Value = c.ConceptCode;
+                ws.Cells[startRow, 5].Value = c.Vocabulary;
+                ws.Cells[startRow, 6].Hyperlink = new Uri($"https://athena.ohdsi.org/search-terms/terms/{c.ConceptId}");
+                ws.Cells[startRow, 6].Value = "Athena";
+                ws.Cells[startRow, 6].Style.Font.Color.SetColor(System.Drawing.Color.Blue);
+                ws.Cells[startRow, 6].Style.Font.UnderLine = true;
+            }
+            startRow++;
+        }
+
+        return startRow;
     }
 }
+
