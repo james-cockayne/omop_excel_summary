@@ -6,7 +6,7 @@ namespace OmopSummary.Extraction;
 
 public class DataExtractor
 {
-    private static readonly Regex ValidIdentifier = new(@"^[A-Za-z_]\w*$", RegexOptions.Compiled);
+    private static readonly Regex ValidIdentifier = new(@"^\w+$", RegexOptions.Compiled);
 
     private readonly string _dbPath;
     private readonly string _schema;
