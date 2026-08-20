@@ -140,7 +140,7 @@ public class DataExtractor
             LEFT JOIN {_schema}.concept c ON t.{conceptColumn} = c.concept_id
             WHERE t.{conceptColumn} != 0
             GROUP BY c.concept_id, c.concept_name, c.concept_code, c.vocabulary_id
-            HAVING COUNT(*) > 1000
+            HAVING COUNT(*) > 10
             ORDER BY cnt DESC
             """;
 
